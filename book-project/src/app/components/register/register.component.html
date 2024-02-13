@@ -1,0 +1,42 @@
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 col-sm-8">
+        <h1 class="text-center mb-4">Register</h1>
+        <div class="card p-4">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label for="username">Username</label>
+              <input type="text" id="username" formControlName="username" class="form-control">
+              <div *ngIf="isControlInvalid('username')" class="alert alert-danger">
+                <div *ngIf="getControlErrors('username')?.required">Username is required</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="password">Password</label>
+              <input type="password" id="password" formControlName="password" class="form-control">
+              <div *ngIf="isControlInvalid('password')" class="alert alert-danger">
+                <div *ngIf="getControlErrors('password')?.required">Password is required</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <label for="confirmPassword">Confirm password</label>
+              <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+              <div *ngIf="isControlInvalid('confirmPassword')" class="alert alert-danger">
+                <div *ngIf="getControlErrors('confirmPassword')?.required">Confirm password is required</div>
+                <div *ngIf="registerForm.errors?.['passwordMismatch']">Passwords do not match</div>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-info" [disabled]="!registerForm.valid">Register</button>
+            </div>
+          </form>
+          <p class="text-center mt-4">
+            Already have an account? <a routerLink="/login">Login here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>

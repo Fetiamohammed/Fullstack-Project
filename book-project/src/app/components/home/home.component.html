@@ -1,0 +1,30 @@
+<div class="container my-5 mx-auto">
+    <div class="d-flex justify-content-end mt-2">
+        <a class="btn btn-info" routerLink="/add">Add new book</a>
+    </div>
+
+    <table class="table table-striped table-hover border-secondary border-top " *ngIf="Books && Books.length > 0">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let Book of Books">
+                <th><i class="fa-solid fa-book"></i></th>
+                <td>{{Book.title}}</td>
+                <td>{{Book.author}}</td>
+                <td>{{Book.date}}</td>
+                <td><a class="text-info"   [routerLink]="'/edit/' + Book.id">Edit</a></td>
+                <td><a class="text-info" [routerLink]="[]" (click)="deleteBook(Book.id)"><i class="fa-solid fa-trash"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!Books || Books.length == 0">No books for now</p>
+</div>
+<!-- home-page template is done -->

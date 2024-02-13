@@ -1,0 +1,23 @@
+<div class="container mx-5 my-5">
+  <div class="accordion mx-auto text-center" id="quoteAccordion">
+    <h4> Click to discover five favorite Quotes</h4>
+    <div *ngFor="let quote of quotes; let i = index" class="accordion-item">
+      <h5 class="accordion-header" id="heading{{ i }}">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" [attr.aria-expanded]="quote.expanded ? 'true' : 'false'" [attr.aria-controls]="'collapse' + i">
+          Quote
+          {{ i+1}}
+        </button>
+      </h5>
+      <div [id]="'collapse' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#quoteAccordion">
+        <div class="accordion-body">
+          <p>
+            {{ quote.text }}
+          </p>
+          <button class="btn btn-info" (click)="toggleLike(quote)">
+            {{ quote.liked ? 'Unlike' : 'Like' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
